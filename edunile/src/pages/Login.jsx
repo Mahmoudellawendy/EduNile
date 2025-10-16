@@ -19,12 +19,12 @@ export default function Login() {
   }
 
   return (
-    <div className="w-50 mx-auto">
-      <h2>Login</h2>
+    <div className="w-50 mx-auto my-5">
+      <h2 className="mb-3">Login</h2>
       <form onSubmit={handleSubmit}>
         <input type="email" className="form-control my-2" placeholder="Email" value={email} onChange={e=>setEmail(e.target.value)} />
         <input type="password" className="form-control my-2" placeholder="Password" value={password} onChange={e=>setPassword(e.target.value)} />
-        <button className="btn btn-primary w-100">Login</button>
+        <button className="btn btn-primary w-100 mt-3">Login</button>
       </form>
     </div>
   );

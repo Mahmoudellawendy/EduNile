@@ -8,14 +8,18 @@ export default function LessonPlayer() {
   if (!course) return <div className="container mt-5">Lesson not found</div>;
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-5 text-center">
       <h2>{course.title} - Lesson Player</h2>
-      <div className="ratio ratio-16x9 my-3">
-        <iframe src={course.video} title={course.title} allowFullScreen></iframe>
-      </div>
-      <div className="d-flex justify-content-between">
+      {course.video ? (
+        <div className="ratio ratio-16x9 my-3">
+          <iframe src={course.video} title={course.title} allowFullScreen></iframe>
+        </div>
+      ) : (
+        <div style={{ fontSize: "100px", margin: "20px 0" }}>🎥</div>
+      )}
+      <div className="d-flex justify-content-between mt-3">
         <Link to="/courses" className="btn btn-secondary">Back to Courses</Link>
-        <Link to={`/dashboard`} className="btn btn-primary">Go to Dashboard</Link>
+        <Link to="/dashboard" className="btn btn-primary">Go to Dashboard</Link>
       </div>
     </div>
   );

@@ -1,12 +1,19 @@
-import courses from "../data/courses.json";
-import CourseCard from "../components/CourseCard";
+import { Link } from "react-router-dom";
 
-export default function CourseList() {
+export default function CourseCard({ course }) {
+  const courseSymbol = course.symbol || "📘";
+
   return (
-    <div className="max-w-6xl mx-auto mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-      {courses.map(course => (
-        <CourseCard key={course.id} course={course} />
-      ))}
+    <div className="card shadow-sm h-100 text-center p-3">
+      <div style={{ fontSize: "60px", marginBottom: "15px" }}>{courseSymbol}</div>
+      <div className="card-body d-flex flex-column">
+        <h5 className="card-title">{course.title}</h5>
+        <p className="card-text">{course.desc}</p>
+        <div className="mt-auto">
+          <Link to={`/courses/${course.id}`} className="btn btn-primary me-2">View Details</Link>
+          <button className="btn btn-secondary">Wishlist</button>
+        </div>
+      </div>
     </div>
   );
 }

@@ -5,11 +5,11 @@ export default function Login() {
       <form>
         <div className="mb-3">
           <label className="form-label">Email</label>
-          <input type="email" className="form-control" required />
+          <input type="email" className="form-control" placeholder="Enter your email" required />
         </div>
         <div className="mb-3">
           <label className="form-label">Password</label>
-          <input type="password" className="form-control" required />
+          <input type="password" className="form-control" placeholder="Enter your password" required />
         </div>
         <button type="submit" className="btn btn-primary w-100">Login</button>
       </form>

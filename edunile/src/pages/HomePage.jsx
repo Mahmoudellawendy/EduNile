@@ -20,7 +20,6 @@ export default function HomePage() {
         {featuredCourses.map(course => (
           <div className="col-md-4" key={course.id}>
             <div className="card shadow-sm text-center p-3">
-              {/* الرمز بدل الصورة */}
               <div style={{fontSize: "60px", marginBottom: "15px"}}>{course.symbol}</div>
               <div className="card-body d-flex flex-column">
                 <h5 className="card-title">{course.title}</h5>

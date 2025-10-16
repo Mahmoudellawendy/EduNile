@@ -12,14 +12,22 @@ export default function ReviewForm() {
   }
 
   return (
-    <div>
+    <div className="container my-4">
       <h4>Reviews</h4>
       <form onSubmit={handleSubmit}>
-        <textarea className="form-control mb-2" value={review} onChange={e=>setReview(e.target.value)} placeholder="Write a review..."></textarea>
+        <textarea
+          className="form-control mb-2"
+          value={review}
+          onChange={e => setReview(e.target.value)}
+          placeholder="Write a review..."
+          rows={3}
+        ></textarea>
         <button className="btn btn-primary">Submit Review</button>
       </form>
       <ul className="list-group mt-3">
-        {reviews.map((r,i) => <li key={i} className="list-group-item">{r}</li>)}
+        {reviews.map((r, i) => (
+          <li key={i} className="list-group-item">{r}</li>
+        ))}
       </ul>
     </div>
   );

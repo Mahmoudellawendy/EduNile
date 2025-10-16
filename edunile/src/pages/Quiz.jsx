@@ -13,17 +13,19 @@ export default function Quiz() {
   };
 
   return (
-    <div>
-      <h3>Quiz</h3>
+    <div className="container my-5">
+      <h3 className="mb-4">Quiz</h3>
       {questions.map(q => (
         <div key={q.id} className="mb-3">
           <p>{q.question}</p>
           {q.options.map(option => (
-            <button key={option} className="btn btn-outline-primary me-2 mb-2" onClick={()=>handleAnswer(q, option)}>{option}</button>
+            <button key={option} className="btn btn-outline-primary me-2 mb-2" onClick={()=>handleAnswer(q, option)}>
+              {option}
+            </button>
           ))}
         </div>
       ))}
-      <h4>Score: {score}/{questions.length}</h4>
+      <h4 className="mt-4">Score: {score}/{questions.length}</h4>
     </div>
   );
 }
