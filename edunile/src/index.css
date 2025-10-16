@@ -1,3 +1,11 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.bg-nileBlue {
+  background-color: var(--nileBlue);
+}
+
+.text-nileYellow {
+  color: var(--nileYellow);
+}
+
+.bg-nileLight {
+  background-color: var(--nileLight);
+}

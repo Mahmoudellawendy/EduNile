@@ -1,11 +1,16 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,jsx,ts,tsx}", // ملف المصدر اللي فيه JSX أو TSX
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        nileBlue: '#005f73',
+        nileYellow: '#ffb703',
+        nileLight: '#e0fbfc',
+      },
+    },
   },
   plugins: [],
-}
+};

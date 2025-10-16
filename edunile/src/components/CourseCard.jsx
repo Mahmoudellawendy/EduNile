@@ -1,15 +1,23 @@
+import React from "react";
 import { Link } from "react-router-dom";
 
-export default function CourseCard({ course }) {
+const CourseCard = ({ course }) => {
   return (
-    <div className="border rounded-xl p-4 shadow hover:shadow-lg transition">
-      <h2 className="text-lg font-semibold">{course.title}</h2>
-      <p className="text-sm text-gray-600">By {course.instructor}</p>
-      <p className="text-yellow-600 font-medium mt-2">⭐ {course.rating}</p>
-      <div className="mt-3 flex gap-2">
-        <Link to={`/courses/${course.id}`} className="px-3 py-2 bg-blue-600 text-white rounded-md">Details</Link>
-        <button className="px-3 py-2 border rounded-md">Save</button>
-      </div>
+    <div className="border rounded-md shadow-md p-4 w-full md:w-[300px]">
+      <img
+        src={course.image}
+        alt={course.title}
+        className="w-full h-40 object-cover rounded"
+      />
+      <h3 className="text-xl font-bold mt-2">{course.title}</h3>
+      <p className="text-gray-600">{course.description}</p>
+      <p className="text-sm text-gray-500 mt-1">Instructor: {course.instructor}</p>
+      <p className="mt-2 font-semibold">{course.price}</p>
+      <Link to={`/courses/${course.id}`} className="block mt-3 text-blue-600 hover:underline">
+        View Details →
+      </Link>
     </div>
   );
-}
+};
+
+export default CourseCard;
