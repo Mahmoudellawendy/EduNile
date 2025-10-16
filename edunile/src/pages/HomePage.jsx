@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
 
 export default function HomePage() {
+  const featuredCourses = [
+    { id: 1, title: "Web Development", desc: "Learn HTML, CSS, JS, and React with interactive lessons.", symbol: "💻" },
+    { id: 2, title: "Data Science", desc: "Dive into Python, Pandas, NumPy, and Machine Learning.", symbol: "📊" },
+    { id: 3, title: "Graphic Design", desc: "Master Photoshop, Illustrator, and UI/UX design basics.", symbol: "🎨" },
+  ];
+
   return (
     <div className="container my-5">
       <div className="text-center mb-5">
@@ -11,41 +17,22 @@ export default function HomePage() {
       </div>
 
       <div className="row g-4">
-        <div className="col-md-4">
-          <div className="card shadow-sm">
-            <img src="https://via.placeholder.com/300x150" className="card-img-top" alt="Course 1" />
-            <div className="card-body">
-              <h5 className="card-title">Web Development</h5>
-              <p className="card-text">Learn HTML, CSS, JS, and React with interactive lessons.</p>
-              <Link to="/courses" className="btn btn-success me-2">View Course</Link>
-              <button className="btn btn-outline-primary">Wishlist</button>
+        {featuredCourses.map(course => (
+          <div className="col-md-4" key={course.id}>
+            <div className="card shadow-sm text-center p-3">
+              {/* الرمز بدل الصورة */}
+              <div style={{fontSize: "60px", marginBottom: "15px"}}>{course.symbol}</div>
+              <div className="card-body d-flex flex-column">
+                <h5 className="card-title">{course.title}</h5>
+                <p className="card-text">{course.desc}</p>
+                <div className="mt-auto">
+                  <Link to="/courses" className="btn btn-success me-2">View Course</Link>
+                  <button className="btn btn-outline-primary">Wishlist</button>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div className="col-md-4">
-          <div className="card shadow-sm">
-            <img src="https://via.placeholder.com/300x150" className="card-img-top" alt="Course 2" />
-            <div className="card-body">
-              <h5 className="card-title">Data Science</h5>
-              <p className="card-text">Dive into Python, Pandas, NumPy, and Machine Learning.</p>
-              <Link to="/courses" className="btn btn-info me-2">View Course</Link>
-              <button className="btn btn-outline-warning">Wishlist</button>
-            </div>
-          </div>
-        </div>
-
-        <div className="col-md-4">
-          <div className="card shadow-sm">
-            <img src="https://via.placeholder.com/300x150" className="card-img-top" alt="Course 3" />
-            <div className="card-body">
-              <h5 className="card-title">Graphic Design</h5>
-              <p className="card-text">Master Photoshop, Illustrator, and UI/UX design basics.</p>
-              <Link to="/courses" className="btn btn-danger me-2">View Course</Link>
-              <button className="btn btn-outline-success">Wishlist</button>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
 
       <div className="my-5 text-center">
