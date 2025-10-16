@@ -9,27 +9,31 @@ import LessonPlayer from "./pages/LessonPlayer";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
-import Contact from "./pages/Contact"; // ← صفحة Contact
+import Contact from "./pages/Contact";
+
+import UserProvider from "./context/UserContext"; // ← استيراد Context
 
 export default function App() {
   return (
-    <Router>
-      <Navbar />
+    <UserProvider>
+      <Router>
+        <Navbar />
 
-      <div className="container my-5">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/courses" element={<Courses />} />
-          <Route path="/courses/:id" element={<CourseDetails />} />
-          <Route path="/lesson/:id" element={<LessonPlayer />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/contact" element={<Contact />} /> {/* ← هنا */}
-        </Routes>
-      </div>
+        <div className="container my-5">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/courses" element={<Courses />} />
+            <Route path="/courses/:id" element={<CourseDetails />} />
+            <Route path="/lesson/:id" element={<LessonPlayer />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </div>
 
-      <Footer />
-    </Router>
+        <Footer />
+      </Router>
+    </UserProvider>
   );
 }
