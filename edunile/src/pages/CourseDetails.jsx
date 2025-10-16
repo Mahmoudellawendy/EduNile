@@ -1,25 +1,18 @@
 import { useParams, Link } from "react-router-dom";
-import courses from "../data/courses";
+import coursesData from "../data/courses.json";
 
 export default function CourseDetails() {
   const { id } = useParams();
-  const course = courses.find(c => c.id === parseInt(id));
-  if(!course) return <p>Course not found</p>;
+  const course = coursesData.find(c => c.id === parseInt(id));
+
+  if (!course) return <div className="container mt-5">Course not found</div>;
 
   return (
-    <div>
+    <div className="container mt-5">
       <h2>{course.title}</h2>
-      <img src={course.image} alt={course.title} className="img-fluid mb-3" />
-      <p>{course.description}</p>
-      <h4>Lessons</h4>
-      <ul className="list-group mb-3">
-        {course.lessons.map(lesson => (
-          <li key={lesson.id} className="list-group-item">
-            <Link to={`/lesson/${course.id}-${lesson.id}`}>{lesson.title}</Link>
-          </li>
-        ))}
-      </ul>
-      <Link to="/courses" className="btn btn-secondary">Back to Courses</Link>
+      <img src={course.image} alt={course.title} className="img-fluid my-3" />
+      <p>{course.fullDescription}</p>
+      <Link to={`/lesson/${course.id}`} className="btn btn-primary">Start Lesson</Link>
     </div>
   );
 }

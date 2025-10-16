@@ -2,71 +2,17 @@
   {
     "id": 1,
     "title": "React Basics",
-    "description": "Learn the basics of React.js",
-    "image": "/images/react.png",
-    "lessons": [
-      { "id": 1, "title": "Intro to React", "video": "/videos/react-intro.mp4" },
-      { "id": 2, "title": "JSX & Components", "video": "/videos/jsx-components.mp4" }
-    ],
-    "quiz": {
-      "title": "React Basics Quiz",
-      "questions": [
-        {
-          "id": 1,
-          "question": "What is JSX?",
-          "options": ["A template language", "A JavaScript extension", "A CSS framework"],
-          "answer": "A JavaScript extension"
-        },
-        {
-          "id": 2,
-          "question": "Which hook is used for state?",
-          "options": ["useState", "useEffect", "useReducer"],
-          "answer": "useState"
-        }
-      ]
-    }
+    "description": "Learn the fundamentals of React",
+    "fullDescription": "Complete course on React fundamentals including JSX, components, state and props.",
+    "image": "https://via.placeholder.com/400x200.png?text=React+Basics",
+    "video": "https://www.youtube.com/embed/dGcsHMXbSOA"
   },
   {
     "id": 2,
     "title": "JavaScript Advanced",
-    "description": "Deep dive into JS",
-    "image": "/images/js.png",
-    "lessons": [
-      { "id": 1, "title": "Advanced Functions", "video": "/videos/js-functions.mp4" }
-    ],
-    "quiz": {
-      "title": "JS Advanced Quiz",
-      "questions": [
-        {
-          "id": 1,
-          "question": "What is closure?",
-          "options": ["A function inside a function", "A block scope", "A variable"],
-          "answer": "A function inside a function"
-        }
-      ]
-    }
-  },
-  {
-    "id": 3,
-    "title": "React for Beginners",
-    "description": "Learn the basics of React and build interactive web apps.",
-    "image": "/images/react-course.jpg",
-    "video": "/videos/react-intro.mp4",
-    "quiz": [
-      {
-        "question": "What is React?",
-        "options": [
-          { "text": "Library", "isCorrect": true },
-          { "text": "Database", "isCorrect": false }
-        ]
-      },
-      {
-        "question": "JSX stands for?",
-        "options": [
-          { "text": "JavaScript XML", "isCorrect": true },
-          { "text": "Java Simple X", "isCorrect": false }
-        ]
-      }
-    ]
+    "description": "Deep dive into JavaScript",
+    "fullDescription": "Advanced JS concepts including closures, async, and ES6+ features.",
+    "image": "https://via.placeholder.com/400x200.png?text=JS+Advanced",
+    "video": "https://www.youtube.com/embed/PoRJizFvM7s"
   }
 ]

@@ -1,22 +1,22 @@
-import { useParams } from "react-router-dom";
-import courses from "../data/courses";
+import { useParams, Link } from "react-router-dom";
+import coursesData from "../data/courses.json";
 
 export default function LessonPlayer() {
-  const { id } = useParams(); // "courseId-lessonId"
-  const [courseId, lessonId] = id.split("-").map(Number);
-  const course = courses.find(c => c.id === courseId);
-  if(!course) return <p>Course not found</p>;
+  const { id } = useParams();
+  const course = coursesData.find(c => c.id === parseInt(id));
 
-  const lesson = course.lessons.find(l => l.id === lessonId);
-  if(!lesson) return <p>Lesson not found</p>;
+  if (!course) return <div className="container mt-5">Lesson not found</div>;
 
   return (
-    <div>
-      <h2>{lesson.title}</h2>
-      <video width="100%" height="400" controls>
-        <source src={lesson.video} type="video/mp4" />
-      </video>
-      <p className="mt-3">{course.description}</p>
+    <div className="container mt-5">
+      <h2>{course.title} - Lesson Player</h2>
+      <div className="ratio ratio-16x9 my-3">
+        <iframe src={course.video} title={course.title} allowFullScreen></iframe>
+      </div>
+      <div className="d-flex justify-content-between">
+        <Link to="/courses" className="btn btn-secondary">Back to Courses</Link>
+        <Link to={`/dashboard`} className="btn btn-primary">Go to Dashboard</Link>
+      </div>
     </div>
   );
 }

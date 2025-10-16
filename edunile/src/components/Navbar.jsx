@@ -1,45 +1,49 @@
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
-  const isLoggedIn = !!localStorage.getItem("currentUser");
-
-  const handleLogout = () => {
-    localStorage.removeItem("currentUser");
-    window.location.href = "/login";
-  };
-
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-      <div className="container">
-        <Link className="navbar-brand" to="/">EduNile</Link>
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ms-auto">
-            <li className="nav-item">
-              <Link className="nav-link" to="/courses">Courses</Link>
-            </li>
-            {isLoggedIn ? (
-              <>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/dashboard">Dashboard</Link>
-                </li>
-                <li className="nav-item">
-                  <button className="btn btn-warning" onClick={handleLogout}>Logout</button>
-                </li>
-              </>
-            ) : (
-              <>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/login">Login</Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/register">Register</Link>
-                </li>
-              </>
-            )}
-          </ul>
+    <nav className="bg-blue-700 text-white shadow-lg">
+      <div className="container mx-auto flex justify-between items-center py-4 px-6">
+        <Link to="/" className="text-2xl font-bold">
+          EduNile
+        </Link>
+
+        <ul className="flex space-x-6">
+          <li>
+            <Link to="/" className="hover:text-yellow-400 transition">
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to="/courses" className="hover:text-yellow-400 transition">
+              Courses
+            </Link>
+          </li>
+          <li>
+            <Link to="/dashboard" className="hover:text-yellow-400 transition">
+              Dashboard
+            </Link>
+          </li>
+          <li>
+            <Link to="/contact" className="hover:text-yellow-400 transition font-semibold">
+              Contact
+            </Link>
+          </li>
+        </ul>
+
+        <div className="flex space-x-4">
+          <Link
+            to="/login"
+            className="bg-white text-blue-700 px-4 py-2 rounded hover:bg-gray-200 transition"
+          >
+            Login
+          </Link>
+          <Link
+            to="/register"
+            className="bg-yellow-400 text-blue-700 px-4 py-2 rounded hover:bg-yellow-300 transition"
+          >
+            Register
+          </Link>
         </div>
       </div>
     </nav>
