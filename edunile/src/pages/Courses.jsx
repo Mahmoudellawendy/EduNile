@@ -1,12 +1,15 @@
-import React from "react";
+import courses from "../data/courses";
+import CourseCard from "../components/CourseCard";
 
-const Courses = () => {
+export default function Courses() {
   return (
     <div>
-      <h1>Courses Page</h1>
-      <p>List of courses will be displayed here.</p>
+      <h2 className="mb-4">All Courses</h2>
+      <div className="d-flex flex-wrap gap-3">
+        {courses.map(course => (
+          <CourseCard key={course.id} course={course} />
+        ))}
+      </div>
     </div>
   );
-};
-
-export default Courses;
+}

@@ -1,28 +1,12 @@
-import React, { useEffect, useState } from "react";
+import courses from "../data/courses.json";
 import CourseCard from "../components/CourseCard";
 
-const CourseList = () => {
-  const [courses, setCourses] = useState([]);
-
-  useEffect(() => {
-    fetch("https://mockapi.io/edunile/courses")
-      .then((res) => res.json())
-      .then((data) => setCourses(data))
-      .catch((err) => console.error("Failed to fetch courses", err));
-  }, []);
-
+export default function CourseList() {
   return (
-    <div>
-      <h2>Available Courses</h2>
-      <div className="course-list">
-        {courses.length ? (
-          courses.map((course) => <CourseCard key={course.id} course={course} />)
-        ) : (
-          <p>Loading courses...</p>
-        )}
-      </div>
+    <div className="max-w-6xl mx-auto mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+      {courses.map(course => (
+        <CourseCard key={course.id} course={course} />
+      ))}
     </div>
   );
-};
-
-export default CourseList;
+}

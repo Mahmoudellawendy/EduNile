@@ -1,27 +1,25 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+import courses from "../data/courses";
 
-const CourseDetails = () => {
-  const { courseId } = useParams();
-  const [course, setCourse] = useState(null);
-
-  useEffect(() => {
-    fetch(`https://mockapi.io/edunile/courses/${courseId}`)
-      .then((res) => res.json())
-      .then((data) => setCourse(data))
-      .catch((err) => console.error("Failed to fetch course details", err));
-  }, [courseId]);
-
-  if (!course) return <p>Loading course details...</p>;
+export default function CourseDetails() {
+  const { id } = useParams();
+  const course = courses.find(c => c.id === parseInt(id));
+  if(!course) return <p>Course not found</p>;
 
   return (
     <div>
       <h2>{course.title}</h2>
+      <img src={course.image} alt={course.title} className="img-fluid mb-3" />
       <p>{course.description}</p>
-      <button>Enroll Now</button>
-      {/* هنا ممكن تضيف زر التسجيل والدخول على الدروس */}
+      <h4>Lessons</h4>
+      <ul className="list-group mb-3">
+        {course.lessons.map(lesson => (
+          <li key={lesson.id} className="list-group-item">
+            <Link to={`/lesson/${course.id}-${lesson.id}`}>{lesson.title}</Link>
+          </li>
+        ))}
+      </ul>
+      <Link to="/courses" className="btn btn-secondary">Back to Courses</Link>
     </div>
   );
-};
-
-export default CourseDetails;
+}

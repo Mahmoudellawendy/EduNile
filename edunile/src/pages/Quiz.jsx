@@ -1,12 +1,29 @@
-import React from "react";
+import { useState } from "react";
 
-const Quiz = () => {
+export default function Quiz() {
+  const questions = [
+    { id: 1, question: "React is a library for?", options: ["UI", "Backend", "Database"], answer: "UI" },
+    { id: 2, question: "useState is a?", options: ["Hook", "Component", "Class"], answer: "Hook" }
+  ];
+
+  const [score, setScore] = useState(0);
+
+  const handleAnswer = (q, option) => {
+    if(option === q.answer) setScore(score + 1);
+  };
+
   return (
-    <div className="p-4">
-      <h2 className="text-2xl font-semibold mb-4">Course Quiz</h2>
-      <p>This is the quiz page where users can answer questions.</p>
+    <div>
+      <h3>Quiz</h3>
+      {questions.map(q => (
+        <div key={q.id} className="mb-3">
+          <p>{q.question}</p>
+          {q.options.map(option => (
+            <button key={option} className="btn btn-outline-primary me-2 mb-2" onClick={()=>handleAnswer(q, option)}>{option}</button>
+          ))}
+        </div>
+      ))}
+      <h4>Score: {score}/{questions.length}</h4>
     </div>
   );
-};
-
-export default Quiz;
+}
