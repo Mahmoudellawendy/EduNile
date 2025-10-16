@@ -1,49 +1,62 @@
 import { Link } from "react-router-dom";
+import { FaHome, FaBook, FaUser, FaEnvelope } from "react-icons/fa";
 
 export default function Navbar() {
   return (
-    <nav className="bg-blue-700 text-white shadow-lg">
-      <div className="container mx-auto flex justify-between items-center py-4 px-6">
-        <Link to="/" className="text-2xl font-bold">
+    <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: "#2563EB" }}>
+      <div className="container">
+        {/* Logo */}
+        <Link className="navbar-brand fw-bold" to="/">
           EduNile
         </Link>
 
-        <ul className="flex space-x-6">
-          <li>
-            <Link to="/" className="hover:text-yellow-400 transition">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link to="/courses" className="hover:text-yellow-400 transition">
-              Courses
-            </Link>
-          </li>
-          <li>
-            <Link to="/dashboard" className="hover:text-yellow-400 transition">
-              Dashboard
-            </Link>
-          </li>
-          <li>
-            <Link to="/contact" className="hover:text-yellow-400 transition font-semibold">
-              Contact
-            </Link>
-          </li>
-        </ul>
+        {/* Hamburger for mobile */}
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
 
-        <div className="flex space-x-4">
-          <Link
-            to="/login"
-            className="bg-white text-blue-700 px-4 py-2 rounded hover:bg-gray-200 transition"
-          >
-            Login
-          </Link>
-          <Link
-            to="/register"
-            className="bg-yellow-400 text-blue-700 px-4 py-2 rounded hover:bg-yellow-300 transition"
-          >
-            Register
-          </Link>
+        {/* Links */}
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <Link className="nav-link d-flex align-items-center" to="/">
+                <FaHome className="me-1" /> Home
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link d-flex align-items-center" to="/courses">
+                <FaBook className="me-1" /> Courses
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link d-flex align-items-center" to="/dashboard">
+                <FaUser className="me-1" /> Dashboard
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link d-flex align-items-center" to="/contact">
+                <FaEnvelope className="me-1" /> Contact
+              </Link>
+            </li>
+          </ul>
+
+          {/* Buttons */}
+          <div className="d-flex">
+            <Link className="btn btn-light me-2" to="/login">
+              Login
+            </Link>
+            <Link className="btn btn-warning text-dark fw-bold" to="/register">
+              Register
+            </Link>
+          </div>
         </div>
       </div>
     </nav>
