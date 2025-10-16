@@ -4,37 +4,35 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
-import Home from "./pages/Home";
-import About from "./pages/About";
+import HomePage from "./pages/Home";
 import CourseList from "./pages/CourseList";
 import CourseDetails from "./pages/CourseDetails";
-import Contact from "./pages/Contact";
+import LessonPlayer from "./pages/LessonPlayer";
+
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
-import LessonPlayer from "./pages/LessonPlayer";
-import Quiz from "./pages/Quiz";
-
 import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <>
       <Navbar />
-
-      <main className="flex-grow">
+      <main>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/courses" element={<CourseList />} />
-          <Route path="/courses/:id" element={<CourseDetails />} />
-          <Route path="/courses/:id/lesson/:lessonId" element={<LessonPlayer />} />
-          <Route path="/courses/:id/quiz" element={<Quiz />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/courses/:courseId" element={<CourseDetails />} />
+          <Route
+            path="/courses/:courseId/lessons/:lessonId"
+            element={
+              <PrivateRoute>
+                <LessonPlayer />
+              </PrivateRoute>
+            }
+          />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-
-          {/* Protected Route Example */}
           <Route
             path="/dashboard"
             element={
@@ -45,9 +43,8 @@ function App() {
           />
         </Routes>
       </main>
-
       <Footer />
-    </div>
+    </>
   );
 }
 

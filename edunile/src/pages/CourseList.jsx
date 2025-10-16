@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CourseCard from "../components/CourseCard";
-import courses from "../data/courses";
 
 const CourseList = () => {
+  const [courses, setCourses] = useState([]);
+
+  useEffect(() => {
+    fetch("https://mockapi.io/edunile/courses")
+      .then((res) => res.json())
+      .then((data) => setCourses(data))
+      .catch((err) => console.error("Failed to fetch courses", err));
+  }, []);
+
   return (
-    <div className="p-4 max-w-7xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6">All Courses</h1>
-      <div className="flex flex-wrap gap-4">
-        {courses.map((course) => (
-          <CourseCard key={course.id} course={course} />
-        ))}
+    <div>
+      <h2>Available Courses</h2>
+      <div className="course-list">
+        {courses.length ? (
+          courses.map((course) => <CourseCard key={course.id} course={course} />)
+        ) : (
+          <p>Loading courses...</p>
+        )}
       </div>
     </div>
   );

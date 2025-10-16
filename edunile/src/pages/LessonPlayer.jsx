@@ -1,10 +1,22 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 
 const LessonPlayer = () => {
+  const { lessonId } = useParams();
+
+  const videoUrl = "https://www.youtube.com/embed/dQw4w9WgXcQ";
+
   return (
-    <div className="p-4">
-      <h2 className="text-2xl font-semibold mb-4">Lesson Player</h2>
-      <p>This is where the lesson video or content will be displayed.</p>
+    <div>
+      <h2>Lesson Video</h2>
+      <iframe
+        width="800"
+        height="450"
+        src={videoUrl}
+        title="Lesson Video"
+        frameBorder="0"
+        allowFullScreen
+      ></iframe>
     </div>
   );
 };

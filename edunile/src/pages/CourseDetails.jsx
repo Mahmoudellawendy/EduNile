@@ -1,11 +1,27 @@
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-export default function CourseDetails() {
-  const { id } = useParams();
+const CourseDetails = () => {
+  const { courseId } = useParams();
+  const [course, setCourse] = useState(null);
+
+  useEffect(() => {
+    fetch(`https://mockapi.io/edunile/courses/${courseId}`)
+      .then((res) => res.json())
+      .then((data) => setCourse(data))
+      .catch((err) => console.error("Failed to fetch course details", err));
+  }, [courseId]);
+
+  if (!course) return <p>Loading course details...</p>;
+
   return (
-    <div className="p-6 max-w-4xl mx-auto">
-      <h1 className="text-2xl font-bold mb-2">Course Details — ID: {id}</h1>
-      <p className="text-gray-700">تفاصيل الكورس، وصفه، الدروس، زر الالتحاق، الخ.</p>
+    <div>
+      <h2>{course.title}</h2>
+      <p>{course.description}</p>
+      <button>Enroll Now</button>
+      {/* هنا ممكن تضيف زر التسجيل والدخول على الدروس */}
     </div>
   );
-}
+};
+
+export default CourseDetails;
