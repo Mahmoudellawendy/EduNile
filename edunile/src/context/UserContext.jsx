@@ -8,17 +8,16 @@ export default function UserProvider({ children }) {
     return savedUser ? JSON.parse(savedUser) : null;
   });
 
-  const login = (user) => {
-    localStorage.setItem("currentUser", JSON.stringify(user));
-    setCurrentUser(user);
-  };
+  // حفظ المستخدم في localStorage عند التغيير
+  useEffect(() => {
+    if (currentUser) {
+      localStorage.setItem("currentUser", JSON.stringify(currentUser));
+    } else {
+      localStorage.removeItem("currentUser");
+    }
+  }, [currentUser]);
 
-  const logout = () => {
-    localStorage.removeItem("currentUser");
-    setCurrentUser(null);
-  };
-
-  // عشان يتحدث تلقائي لو حصل login/logout
+  // تحديث تلقائي في حالة login/logout من تبويب آخر
   useEffect(() => {
     const handleStorageChange = () => {
       const updatedUser = localStorage.getItem("currentUser");
@@ -27,6 +26,9 @@ export default function UserProvider({ children }) {
     window.addEventListener("storage", handleStorageChange);
     return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
+
+  const login = (user) => setCurrentUser(user);
+  const logout = () => setCurrentUser(null);
 
   return (
     <UserContext.Provider value={{ currentUser, login, logout }}>
