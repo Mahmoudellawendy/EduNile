@@ -11,13 +11,14 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Contact from "./pages/Contact";
 
-import UserProvider from "./context/UserContext";
+import UserProvider from "./context/UserContext"; // مهم جداً
 
 export default function App() {
   return (
     <UserProvider>
       <Router>
         <Navbar />
+
         <div className="container my-5">
           <Routes>
             <Route path="/" element={<HomePage />} />
@@ -30,6 +31,7 @@ export default function App() {
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </div>
+
         <Footer />
       </Router>
     </UserProvider>
