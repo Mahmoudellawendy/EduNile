@@ -8,7 +8,7 @@ export default function UserProvider({ children }) {
     return savedUser ? JSON.parse(savedUser) : null;
   });
 
-  // حفظ المستخدم في localStorage عند التغيير
+  // تحديث البيانات في localStorage لما المستخدم يتغير
   useEffect(() => {
     if (currentUser) {
       localStorage.setItem("currentUser", JSON.stringify(currentUser));
@@ -17,7 +17,7 @@ export default function UserProvider({ children }) {
     }
   }, [currentUser]);
 
-  // تحديث تلقائي في حالة login/logout من تبويب آخر
+  // تحديث تلقائي لو حصل login/logout في تبويب آخر
   useEffect(() => {
     const handleStorageChange = () => {
       const updatedUser = localStorage.getItem("currentUser");
@@ -27,8 +27,17 @@ export default function UserProvider({ children }) {
     return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
 
-  const login = (user) => setCurrentUser(user);
-  const logout = () => setCurrentUser(null);
+  // تسجيل الدخول
+  const login = (user) => {
+    setCurrentUser(user);
+    window.location.reload(); // ← تحديث تلقائي بعد تسجيل الدخول
+  };
+
+  // تسجيل الخروج
+  const logout = () => {
+    setCurrentUser(null);
+    window.location.reload(); // ← تحديث تلقائي بعد تسجيل الخروج
+  };
 
   return (
     <UserContext.Provider value={{ currentUser, login, logout }}>

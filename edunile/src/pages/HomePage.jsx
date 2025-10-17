@@ -1,35 +1,46 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../context/UserContext";
 
 export default function HomePage() {
+  const { currentUser } = useContext(UserContext); // ← هنا استخدمنا الـ Context بدل localStorage
+
   const featuredCourses = [
     { id: 1, title: "Web Development", desc: "Learn HTML, CSS, JS, and React with interactive lessons.", symbol: "💻" },
     { id: 2, title: "Data Science", desc: "Dive into Python, Pandas, NumPy, and Machine Learning.", symbol: "📊" },
     { id: 3, title: "Graphic Design", desc: "Master Photoshop, Illustrator, and UI/UX design basics.", symbol: "🎨" },
   ];
 
-  const currentUser = JSON.parse(localStorage.getItem("currentUser")); // تحقق إذا المستخدم مسجل دخول
-
   return (
     <div className="container my-5">
       <div className="text-center mb-5">
         <h1 className="display-4">Welcome to EduNile</h1>
         <p className="lead">Your Egyptian E-Learning Platform</p>
-        <Link to="/courses" className="btn btn-primary btn-lg mx-2">Explore Courses</Link>
-        {!currentUser && ( // الزر يظهر فقط لو المستخدم مش مسجل دخول
-          <Link to="/register" className="btn btn-warning btn-lg mx-2">Join Now</Link>
+
+        <Link to="/courses" className="btn btn-primary btn-lg mx-2">
+          Explore Courses
+        </Link>
+
+        {/* الزرار دا يختفي لو المستخدم عامل تسجيل دخول */}
+        {!currentUser && (
+          <Link to="/register" className="btn btn-warning btn-lg mx-2">
+            Join Now
+          </Link>
         )}
       </div>
 
       <div className="row g-4">
-        {featuredCourses.map(course => (
+        {featuredCourses.map((course) => (
           <div className="col-md-4" key={course.id}>
             <div className="card shadow-sm text-center p-3">
-              <div style={{fontSize: "60px", marginBottom: "15px"}}>{course.symbol}</div>
+              <div style={{ fontSize: "60px", marginBottom: "15px" }}>{course.symbol}</div>
               <div className="card-body d-flex flex-column">
                 <h5 className="card-title">{course.title}</h5>
                 <p className="card-text">{course.desc}</p>
                 <div className="mt-auto">
-                  <Link to="/courses" className="btn btn-success me-2">View Course</Link>
+                  <Link to="/courses" className="btn btn-success me-2">
+                    View Course
+                  </Link>
                   <button className="btn btn-outline-primary">Wishlist</button>
                 </div>
               </div>

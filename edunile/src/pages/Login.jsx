@@ -1,12 +1,16 @@
-import { useState, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login } = useContext(UserContext);
+  const { currentUser, login } = useContext(UserContext);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (currentUser) navigate("/dashboard");
+  }, [currentUser, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
