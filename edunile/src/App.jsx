@@ -11,7 +11,7 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Contact from "./pages/Contact";
 
-import UserProvider from "./context/UserContext"; // ← استيراد Context
+import UserProvider from "./context/UserContext"; // ← هنا الContext
 
 export default function App() {
   return (

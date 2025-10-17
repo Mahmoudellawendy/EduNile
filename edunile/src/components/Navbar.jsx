@@ -21,23 +21,23 @@ export default function Navbar() {
             <li className="nav-item">
               <Link className="nav-link d-flex align-items-center" to="/courses"><FaBook className="me-1" /> Courses</Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link d-flex align-items-center" to="/dashboard"><FaUser className="me-1" /> Dashboard</Link>
-            </li>
+            {currentUser && (
+              <li className="nav-item">
+                <Link className="nav-link d-flex align-items-center" to="/dashboard"><FaUser className="me-1" /> Dashboard</Link>
+              </li>
+            )}
             <li className="nav-item">
               <Link className="nav-link d-flex align-items-center" to="/contact"><FaEnvelope className="me-1" /> Contact</Link>
             </li>
           </ul>
 
           <div className="d-flex">
-            {!currentUser && (
+            {!currentUser ? (
               <>
                 <Link className="btn btn-light me-2" to="/login">Login</Link>
                 <Link className="btn btn-warning text-dark fw-bold" to="/register">Register</Link>
               </>
-            )}
-
-            {currentUser && (
+            ) : (
               <button className="btn btn-danger" onClick={logout}>Logout</button>
             )}
           </div>

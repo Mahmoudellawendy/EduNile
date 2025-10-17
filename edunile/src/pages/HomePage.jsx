@@ -7,13 +7,17 @@ export default function HomePage() {
     { id: 3, title: "Graphic Design", desc: "Master Photoshop, Illustrator, and UI/UX design basics.", symbol: "🎨" },
   ];
 
+  const currentUser = JSON.parse(localStorage.getItem("currentUser")); // تحقق إذا المستخدم مسجل دخول
+
   return (
     <div className="container my-5">
       <div className="text-center mb-5">
         <h1 className="display-4">Welcome to EduNile</h1>
         <p className="lead">Your Egyptian E-Learning Platform</p>
         <Link to="/courses" className="btn btn-primary btn-lg mx-2">Explore Courses</Link>
-        <Link to="/register" className="btn btn-warning btn-lg mx-2">Join Now</Link>
+        {!currentUser && ( // الزر يظهر فقط لو المستخدم مش مسجل دخول
+          <Link to="/register" className="btn btn-warning btn-lg mx-2">Join Now</Link>
+        )}
       </div>
 
       <div className="row g-4">
